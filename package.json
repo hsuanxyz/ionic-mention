@@ -1,9 +1,9 @@
 {
-  "name": "ionic-app-base",
+  "name": "ionic-mention",
   "version": "0.0.0",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
+  "author": "HsuanLee",
+  "homepage": "https://github.com/HsuanXyz/ionic-mention",
+  "private": false,
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
