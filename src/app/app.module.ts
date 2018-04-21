@@ -6,12 +6,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { IonicMentionModule } from "../ionic-mention/mention.module";
+import { IonicMentionModule } from "../ionic-mention";
+import { SuggestionModal } from "../components/suggestion-modal";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    SuggestionModal,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { IonicMentionModule } from "../ionic-mention/mention.module";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    SuggestionModal,
   ],
   providers: [
     StatusBar,

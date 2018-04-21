@@ -1,4 +1,5 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
 
 @Directive({
   selector: '[ionicMention]',
@@ -6,10 +7,16 @@ import { Directive, ElementRef } from '@angular/core';
     '(input)': 'onInput($event)'
   }
 })
-export class MentionTrigger {
+export class MentionTrigger implements OnInit {
 
-  constructor(elementRef: ElementRef) {
-    console.log(elementRef.nativeElement.tagName)
+  @Input('ionicMention') suggestionModal: IonicMentionSuggestionModal;
+
+  constructor(public elementRef: ElementRef) {
+    console.log(this.elementRef.nativeElement.tagName);
+  }
+
+  ngOnInit(): void {
+    console.log(this.suggestionModal)
   }
 
   onInput($event) {

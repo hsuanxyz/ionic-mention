@@ -7,8 +7,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-input ionicMention placeholder="ionic input"></ion-input>
-  <ion-textarea ionicMention placeholder="ionic textarea"></ion-textarea>
-  <input ionicMention placeholder="input"/>
-  <textarea ionicMention placeholder="textarea"></textarea>
+  <ion-input
+    [ionicMention]="suggestionModal"
+    placeholder="ionic input">
+  </ion-input>
+
+  <ion-textarea
+    [ionicMention]="suggestionModal"
+    placeholder="ionic textarea">
+  </ion-textarea>
+
+  <input
+    [ionicMention]="suggestionModal"
+    placeholder="input"/>
+  <textarea
+    [ionicMention]="suggestionModal"
+    placeholder="textarea">
+  </textarea>
 </ion-content>
