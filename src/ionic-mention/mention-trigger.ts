@@ -4,7 +4,7 @@ import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
 @Directive({
   selector: '[ionicMention]',
   host: {
-    '(input)': 'onInput($event)'
+    '(keydown)': 'onKeyDown($event)'
   }
 })
 export class MentionTrigger implements OnInit {
@@ -23,8 +23,8 @@ export class MentionTrigger implements OnInit {
     console.log(this.suggestionModal)
   }
 
-  onInput($event) {
+  onKeyDown($event) {
     const target: HTMLInputElement | HTMLTextAreaElement = $event.target;
-    console.log(target.value);
+    const value = target.value.replace(/[\r\n]/g, ' ') || '';
   }
 }
