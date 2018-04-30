@@ -2,7 +2,7 @@ import { Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@ang
 import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
 
 @Directive({
-  selector: '[ionicMention]',
+  selector: 'input[ionicMention], textarea[ionicMention], ion-input[ionicMention], ion-textarea[ionicMention]',
   host: {
     '(input)': 'onInput($event)'
   }
