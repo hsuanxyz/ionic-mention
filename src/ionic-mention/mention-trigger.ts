@@ -1,5 +1,7 @@
 import { Directive, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
+import { ModalController } from "ionic-angular";
+import { Modal } from "ionic-angular/components/modal/modal";
 
 @Directive({
   selector: 'input[ionicMention], textarea[ionicMention], ion-input[ionicMention], ion-textarea[ionicMention]',
@@ -9,13 +11,13 @@ import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
 })
 export class MentionTrigger implements OnInit {
 
-  @Input('ionicMention') suggestionModal: IonicMentionSuggestionModal;
+  @Input('ionicMention') suggestionComponent: IonicMentionSuggestionModal;
   @Input() prefix: string | string[] = '@';
   @Output() onOpen: EventEmitter<string> = new EventEmitter();
   @Output() onSelected: EventEmitter<any> = new EventEmitter();
   @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
-  constructor(public elementRef: ElementRef) {
+  constructor(public elementRef: ElementRef, public modalCtrl: ModalController) {
   }
 
   ngOnInit(): void {
@@ -44,5 +46,8 @@ export class MentionTrigger implements OnInit {
   openModal(triggerPrefix: string, position: number) {
     console.log(triggerPrefix);
     console.log(position);
+  }
+
+  bindSuggestionComponent() {
   }
 }
