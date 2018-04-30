@@ -4,7 +4,7 @@ import { IonicMentionSuggestionModal } from './mention-suggestion.interface';
 @Directive({
   selector: '[ionicMention]',
   host: {
-    '(keydown)': 'onKeyDown($event)'
+    '(input)': 'onInput($event)'
   }
 })
 export class MentionTrigger implements OnInit {
@@ -16,15 +16,33 @@ export class MentionTrigger implements OnInit {
   @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
   constructor(public elementRef: ElementRef) {
-    console.log(this.elementRef.nativeElement.tagName);
   }
 
   ngOnInit(): void {
-    console.log(this.suggestionModal)
   }
 
-  onKeyDown($event) {
+  onInput($event) {
     const target: HTMLInputElement | HTMLTextAreaElement = $event.target;
     const value = target.value.replace(/[\r\n]/g, ' ') || '';
+    const selectionStart = target.selectionStart;
+    const prefix = typeof this.prefix === 'string' ? [this.prefix] : this.prefix;
+    const triggerPrefixIndex = prefix.indexOf($event.data);
+    if (triggerPrefixIndex === -1) {
+      return;
+    }
+    const triggerPrefix = prefix[triggerPrefixIndex];
+    const position = value.lastIndexOf(triggerPrefix, selectionStart);
+    if (
+      (position === 0 && value.length === 1)
+      || (value[position - 1] === ' ' && position === value.length - 1)
+      || (value[position - 1] === ' ' && value[position + 1] === ' ')
+    ) {
+      this.openModal(triggerPrefix, position)
+    }
+  }
+
+  openModal(triggerPrefix: string, position: number) {
+    console.log(triggerPrefix);
+    console.log(position);
   }
 }
