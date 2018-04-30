@@ -17,6 +17,8 @@ export class MentionTrigger implements OnInit {
   @Output() onSelected: EventEmitter<any> = new EventEmitter();
   @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
+  suggestionModal: Modal;
+
   constructor(public elementRef: ElementRef, public modalCtrl: ModalController) {
   }
 
@@ -46,8 +48,14 @@ export class MentionTrigger implements OnInit {
   openModal(triggerPrefix: string, position: number) {
     console.log(triggerPrefix);
     console.log(position);
+    if (!this.suggestionModal) {
+      this.suggestionModal = this.modalCtrl.create(this.suggestionComponent);
+      this.suggestionModal.present();
+      this.suggestionModal.onDidDismiss((data) => this.handleDismiss(data))
+    }
   }
 
-  bindSuggestionComponent() {
+  handleDismiss(data: any) {
+    this.suggestionModal = null;
   }
 }
